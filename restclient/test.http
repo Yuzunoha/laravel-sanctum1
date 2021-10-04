@@ -1,0 +1,4 @@
+GET http://localhost/user/
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer bM2p3WPoLjNE7UidFzOmz4qpn3VU6Jd7EGx8Mucy
