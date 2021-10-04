@@ -12,4 +12,9 @@ class ThreadController extends Controller
         $items = Thread::all();
         return ($items);
     }
+
+    public function add(Request $request)
+    {
+        return $request;
+    }
 }
