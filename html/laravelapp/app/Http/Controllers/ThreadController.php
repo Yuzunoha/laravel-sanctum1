@@ -15,6 +15,9 @@ class ThreadController extends Controller
 
     public function add(Request $request)
     {
-        return $request;
+        $thread = new Thread;
+        $thread->title = $request->post_title;
+        $thread->save();
+        return $thread;
     }
 }
