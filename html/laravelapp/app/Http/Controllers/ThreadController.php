@@ -31,10 +31,12 @@ class ThreadController extends Controller
         return $this->threadRepository->insert($request->post_title);
     }
 
-    public function test(Request $request)
+    public function test(ThreadCreatePost $request)
     {
-        $param1 = config('const');
-        $param2 = 2;
+        return [
+            $request->title,
+            $request->text,
+        ];
         $this->threadService->create($param1, $param2);
     }
 }

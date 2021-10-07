@@ -13,7 +13,7 @@ class ThreadCreatePost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,10 @@ class ThreadCreatePost extends FormRequest
      */
     public function rules()
     {
+        $const = config('const');
         return [
-            //
+            'title' => 'required|max:' . $const['TITLE_MAX_LENGTH'],
+            'text' => 'required|max:' . $const['TEXT_MAX_LENGTH'],
         ];
     }
 }

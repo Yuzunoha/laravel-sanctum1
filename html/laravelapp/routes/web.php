@@ -37,3 +37,4 @@ Route::get('/threads', 'ThreadController@index');
 Route::post('/threads', 'ThreadController@add');
 
 Route::get('/test', 'ThreadController@test');
+Route::post('/test', 'ThreadController@test');
