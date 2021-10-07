@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ThreadCreatePost extends FormRequest
 {
@@ -35,11 +33,6 @@ class ThreadCreatePost extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        $status = 400;
-        $res = response()->json([
-            'status' => $status,
-            'errors' => $validator->errors(),
-        ], $status);
-        throw new HttpResponseException($res);
+        RequestCommon::failedValidationCore($validator->errors());
     }
 }
