@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ThreadCreatePost extends FormRequest
 {
@@ -25,8 +28,18 @@ class ThreadCreatePost extends FormRequest
     {
         $const = config('const');
         return [
-            'title' => 'required|max:' . $const['TITLE_MAX_LENGTH'],
-            'text' => 'required|max:' . $const['TEXT_MAX_LENGTH'],
+            'title' => 'required|string|max:' . $const['TITLE_MAX_LENGTH'],
+            'text' => 'required|string|max:' . $const['TEXT_MAX_LENGTH'],
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $status = 400;
+        $res = response()->json([
+            'status' => $status,
+            'errors' => $validator->errors(),
+        ], $status);
+        throw new HttpResponseException($res);
     }
 }
