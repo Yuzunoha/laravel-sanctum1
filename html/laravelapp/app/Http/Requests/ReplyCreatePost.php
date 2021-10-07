@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReplyCreatePost extends FormRequest
@@ -13,7 +14,7 @@ class ReplyCreatePost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,17 @@ class ReplyCreatePost extends FormRequest
      */
     public function rules()
     {
+        $const = config('const');
         return [
-            //
+            'thread_id'  => 'required|integer',
+            'user_id'    => 'required|integer',
+            'text'       => 'required|string|max:' . $const['TEXT_MAX_LENGTH'],
+            'ip_address' => 'required|string',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        RequestCommon::failedValidationCore($validator->errors());
     }
 }
