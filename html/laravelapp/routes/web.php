@@ -35,3 +35,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/threads', 'ThreadController@index');
 Route::post('/threads', 'ThreadController@add');
+
+Route::get('/test', 'ThreadController@test');

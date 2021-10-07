@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\ThreadRepositoryInterface::class,
             \App\Repositories\ThreadRepository::class
         );
+        $this->app->bind(
+            \App\Services\ThreadServiceInterface::class,
+            \App\Services\ThreadService::class,
+        );
     }
 
     /**
