@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ThreadCreatePost;
 use App\Repositories\ThreadRepositoryInterface;
 use App\Services\ThreadServiceInterface;
 use Illuminate\Http\Request;
@@ -32,6 +33,8 @@ class ThreadController extends Controller
 
     public function test(Request $request)
     {
-        $this->threadService->create(1, 2);
+        $param1 = config('const');
+        $param2 = 2;
+        $this->threadService->create($param1, $param2);
     }
 }
