@@ -22,4 +22,9 @@ class ThreadRepository implements ThreadRepositoryInterface
     {
         return Thread::all();
     }
+
+    public function selectById(int $id): ?Thread
+    {
+        return Thread::find($id);
+    }
 }
