@@ -18,4 +18,9 @@ class ReplyService implements ReplyServiceInterface
     {
         return $this->replyRepository->insert($thread_id, $user_id, $text, $ip_address);
     }
+
+    public function selectAll()
+    {
+        return $this->replyRepository->selectAll();
+    }
 }

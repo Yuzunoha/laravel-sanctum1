@@ -27,6 +27,11 @@ class ReplyController extends Controller
         );
     }
 
+    public function selectAll(Request $request)
+    {
+        return $this->replyService->selectAll();
+    }
+
     public function test(Request $request)
     {
         return $this->replyService->create(2, 2, 'テキストです。', 'IPアドレスです。');

@@ -16,4 +16,9 @@ class ReplyRepository implements ReplyRepositoryInterface
         $model->save();
         return $model;
     }
+
+    public function selectAll()
+    {
+        return Reply::all();
+    }
 }
