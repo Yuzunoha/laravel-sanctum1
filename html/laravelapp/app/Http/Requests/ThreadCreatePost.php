@@ -32,6 +32,6 @@ class ThreadCreatePost extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        RequestCommon::failedValidationCore($validator->errors());
+        UtilService::throwHttpResponseException($validator->errors());
     }
 }

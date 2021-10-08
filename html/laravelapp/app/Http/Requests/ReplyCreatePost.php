@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Services\UtilService;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -35,6 +36,6 @@ class ReplyCreatePost extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        RequestCommon::failedValidationCore($validator->errors());
+        UtilService::throwHttpResponseException($validator->errors());
     }
 }
