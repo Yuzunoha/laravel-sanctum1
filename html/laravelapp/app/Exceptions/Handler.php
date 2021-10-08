@@ -36,16 +36,13 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        // $this->reportable(function (Throwable $e) { });
+        $this->renderable(function (Throwable $e) {
+            $status = $e->getCode() ?: 400;
+            return response([
+                'status' => $status,
+                'errors' => $e->getMessage()
+            ], $status);
         });
-    }
-
-    /**
-     * Override
-     */
-    protected function unauthenticated($request, AuthenticationException $exception)
-    {
-        UtilService::throwHttpResponseException($exception->getMessage(), 401);
     }
 }
