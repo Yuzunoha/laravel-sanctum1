@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Thread;
 use App\Repositories\ThreadRepositoryInterface;
 
 class ThreadService implements ThreadServiceInterface
@@ -17,5 +18,10 @@ class ThreadService implements ThreadServiceInterface
     {
         /* TODO: チェックする */
         return $this->threadRepository->insert($user_id, $title, $ip_address);
+    }
+
+    public function selectById(int $id): ?Thread
+    {
+        return $this->threadRepository->selectById($id);
     }
 }
