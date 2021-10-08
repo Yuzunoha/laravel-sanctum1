@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 class UtilService
 {
     public static function getIp()
@@ -25,5 +27,15 @@ class UtilService
             }
         }
         return 'ip不明';
+    }
+
+    public static function throwHttpResponseException($errors, $status = 400)
+    {
+        $res = response()->json([
+            'status' => $status,
+            'errors' => $errors,
+        ], $status);
+
+        throw new HttpResponseException($res);
     }
 }
