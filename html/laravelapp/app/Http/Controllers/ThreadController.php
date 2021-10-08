@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ThreadCreatePost;
+use App\Models\Thread;
 use App\Repositories\ThreadRepositoryInterface;
 use App\Services\ThreadServiceInterface;
 use App\Services\UtilService;
@@ -29,9 +30,8 @@ class ThreadController extends Controller
         return $this->threadService->create($user_id, $title, $ip_address);
     }
 
-    public function index(Request $request)
+    public function getAll()
     {
-        $items = Thread::all();
-        return ($items);
+        return Thread::all();
     }
 }
