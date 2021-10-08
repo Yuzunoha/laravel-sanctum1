@@ -33,7 +33,7 @@ class UtilService
     {
         $res = response()->json([
             'status' => $status,
-            'errors' => $errors,
+            'message' => $errors,
         ], $status);
 
         throw new HttpResponseException($res);
