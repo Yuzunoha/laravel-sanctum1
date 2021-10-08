@@ -9,7 +9,7 @@ class ThreadRepository implements ThreadRepositoryInterface
 {
     public function insert($title)
     {
-        $thread = new Thread();
+        $thread = new Thread;
         $thread->title = $title;
         $thread->save();
         return $thread;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\UtilService;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,4 +41,6 @@ Route::get('/threads', 'ThreadController@create');
 Route::post('/replies', 'ReplyController@create');
 Route::get('/replies', 'ReplyController@selectAll');
 
-Route::get('/test', 'ReplyController@create');
+Route::get('/test', function () {
+    return UtilService::getIp();
+});
