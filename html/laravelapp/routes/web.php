@@ -1,6 +1,8 @@
 <?php
 
+use App\Repositories\ReplyRepository;
 use App\Repositories\ThreadRepository;
+use App\Services\ReplyService;
 use App\Services\ThreadService;
 use App\Services\UtilService;
 use Illuminate\Foundation\Application;
@@ -39,13 +41,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // 本番 start
 Route::middleware('auth:sanctum')->get('/threads', 'ThreadController@getAll');
 Route::middleware('auth:sanctum')->post('/threads', 'ThreadController@create');
+Route::middleware('auth:sanctum')->get('/replies', 'ReplyController@selectAll');
+Route::middleware('auth:sanctum')->post('/replies', 'ReplyController@create');
 // 本番 end
 
-Route::post('/replies', 'ReplyController@create');
-Route::get('/replies', 'ReplyController@selectAll');
-
 Route::get('/test', function () {
-    $rep = new ThreadRepository;
-    $service = new ThreadService($rep);
-    return $service->selectById(1);
+    $service = new ReplyService(
+        new ReplyRepository,
+        new ThreadService(
+            new ThreadRepository
+        )
+    );
+    return count($service->selectByThreadId(1));
 });
