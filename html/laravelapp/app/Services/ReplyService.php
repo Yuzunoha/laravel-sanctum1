@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Repositories\ReplyRepositoryInterface;
 
 class ReplyService implements ReplyServiceInterface
@@ -25,7 +26,7 @@ class ReplyService implements ReplyServiceInterface
         }
 
         /* user_id が存在するか確認する */
-        if (false) {
+        if (null === User::find($user_id)) {
             UtilService::throwHttpResponseException("user_id ${user_id} は存在しません。");
         }
 
