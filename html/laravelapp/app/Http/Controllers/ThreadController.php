@@ -7,7 +7,7 @@ use App\Models\Thread;
 use App\Repositories\ThreadRepositoryInterface;
 use App\Services\ThreadServiceInterface;
 use App\Services\UtilService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ThreadController extends Controller
 {

@@ -16,6 +16,6 @@ class ThreadService implements ThreadServiceInterface
     public function create($user_id, $title, $ip_address)
     {
         /* TODO: チェックする */
-        $this->threadRepository->insert($user_id, $title, $ip_address);
+        return $this->threadRepository->insert($user_id, $title, $ip_address);
     }
 }
