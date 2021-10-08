@@ -1,5 +1,7 @@
 <?php
 
+use App\Repositories\ThreadRepository;
+use App\Services\ThreadService;
 use App\Services\UtilService;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -43,5 +45,7 @@ Route::post('/replies', 'ReplyController@create');
 Route::get('/replies', 'ReplyController@selectAll');
 
 Route::get('/test', function () {
-    return UtilService::getIp();
+    $rep = new ThreadRepository;
+    $service = new ThreadService($rep);
+    return $service->selectById(1);
 });
