@@ -4,8 +4,8 @@ namespace App\Services;
 
 class ThreadService implements ThreadServiceInterface
 {
-    public function create($title, $text)
+    public function create($title)
     {
-        dd($title, $text);
+        dd($title);
     }
 }

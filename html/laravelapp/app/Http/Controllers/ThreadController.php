@@ -20,6 +20,11 @@ class ThreadController extends Controller
         $this->threadRepository = $threadRepository;
     }
 
+    public function create(ThreadCreatePost $request)
+    {
+        return $this->threadService->create($request->title);
+    }
+
     public function index(Request $request)
     {
         $items = Thread::all();
