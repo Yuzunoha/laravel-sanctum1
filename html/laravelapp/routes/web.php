@@ -31,7 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return Auth::user();
+    return [Auth::user(), Auth::id()];
 });
 
 // 本番 start
