@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\ReplyRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class ReplyService implements ReplyServiceInterface
 {
@@ -30,11 +31,19 @@ class ReplyService implements ReplyServiceInterface
             UtilService::throwHttpResponseException("user_id ${user_id} は存在しません。");
         }
 
-        return $this->replyRepository->insert($thread_id, $user_id, $text, $ip_address);
+        /* number を取得する */
+        $number = count($this->replyRepository->selectAll()) + 1;
+
+        return $this->replyRepository->insert($thread_id, $number, $user_id, $text, $ip_address);
     }
 
     public function selectAll()
     {
         return $this->replyRepository->selectAll();
+    }
+
+    public function selectByThreadId(int $thread_id): Collection
+    {
+        return $this->replyRepository->selectByThreadId($thread_id);
     }
 }

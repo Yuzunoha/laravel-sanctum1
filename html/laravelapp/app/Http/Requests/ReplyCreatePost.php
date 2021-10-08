@@ -28,9 +28,7 @@ class ReplyCreatePost extends FormRequest
         $const = config('const');
         return [
             'thread_id'  => 'required|integer',
-            'user_id'    => 'required|integer',
             'text'       => 'required|string|max:' . $const['TEXT_MAX_LENGTH'],
-            'ip_address' => 'required|string',
         ];
     }
 

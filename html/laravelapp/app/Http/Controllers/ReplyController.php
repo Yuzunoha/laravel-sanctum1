@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReplyCreatePost;
 use App\Models\Reply;
 use App\Services\ReplyServiceInterface;
+use App\Services\UtilService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
@@ -19,21 +21,19 @@ class ReplyController extends Controller
 
     public function create(ReplyCreatePost $request)
     {
+        $user_id    = Auth::id();
+        $ip_address = UtilService::getIp();
+
         return $this->replyService->create(
             $request->thread_id,
-            $request->user_id,
+            $user_id,
             $request->text,
-            $request->ip_address
+            $ip_address
         );
     }
 
     public function selectAll(Request $request)
     {
         return $this->replyService->selectAll();
-    }
-
-    public function test(Request $request)
-    {
-        return $this->replyService->create(2, 2, 'テキストです。', 'IPアドレスです。');
     }
 }
