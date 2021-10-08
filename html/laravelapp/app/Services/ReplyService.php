@@ -32,7 +32,7 @@ class ReplyService implements ReplyServiceInterface
         }
 
         /* number を取得する */
-        $number = count($this->replyRepository->selectAll()) + 1;
+        $number = count($this->replyRepository->selectByThreadId($thread_id)) + 1;
 
         return $this->replyRepository->insert($thread_id, $number, $user_id, $text, $ip_address);
     }
