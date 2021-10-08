@@ -17,4 +17,9 @@ class ThreadRepository implements ThreadRepositoryInterface
         $thread->save();
         return $thread;
     }
+
+    public function selectAll()
+    {
+        return Thread::all();
+    }
 }

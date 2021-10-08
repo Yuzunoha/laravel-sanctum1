@@ -32,6 +32,6 @@ class ThreadController extends Controller
 
     public function getAll()
     {
-        return Thread::all();
+        return $this->threadRepository->selectAll();
     }
 }
