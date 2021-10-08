@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ThreadCreatePost;
 use App\Repositories\ThreadRepositoryInterface;
 use App\Services\ThreadServiceInterface;
+use App\Services\UtilService;
 use Illuminate\Http\Request;
 
 class ThreadController extends Controller
@@ -22,26 +23,15 @@ class ThreadController extends Controller
 
     public function create(ThreadCreatePost $request)
     {
-        return $this->threadService->create($request->title);
+        $user_id    = Auth::id();
+        $title      = $request->title;
+        $ip_address = UtilService::getIp();
+        return $this->threadService->create($user_id, $title, $ip_address);
     }
 
     public function index(Request $request)
     {
         $items = Thread::all();
         return ($items);
-    }
-
-    public function add(Request $request)
-    {
-        return $this->threadRepository->insert($request->post_title);
-    }
-
-    public function test(ThreadCreatePost $request)
-    {
-        return [
-            $request->title,
-            $request->text,
-        ];
-        $this->threadService->create($param1, $param2);
     }
 }

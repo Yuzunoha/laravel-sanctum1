@@ -2,10 +2,20 @@
 
 namespace App\Services;
 
+use App\Repositories\ThreadRepositoryInterface;
+
 class ThreadService implements ThreadServiceInterface
 {
-    public function create($title)
+    protected $threadRepository;
+
+    public function __construct(ThreadRepositoryInterface $threadRepository)
     {
-        dd($title);
+        $this->threadRepository = $threadRepository;
+    }
+
+    public function create($user_id, $title, $ip_address)
+    {
+        /* TODO: チェックする */
+        $this->threadRepository->insert($user_id, $title, $ip_address);
     }
 }
